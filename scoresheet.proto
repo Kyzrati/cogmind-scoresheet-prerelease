@@ -1,5 +1,5 @@
 
-// Cogmind - Beta 13 X1 (build 230714a)
+// Cogmind - Beta 13 (build 231220b)
 
 syntax = "proto3";
 
@@ -172,6 +172,10 @@ message Bonus {
 	int32 triggered_max_security		= 15	[(display_name)="Triggered Max Security"	,(skip_zero)=true	];
 	int32 high_alert_combat_kills		= 16	[(display_name)="High Alert Combat Kills"	,(skip_zero)=true	];
 	int32 follower_combat_kills		= 17	[(display_name)="Follower Combat Kills"		,(skip_zero)=true	];
+	int32 forged_quantum_companion		= 80	[(display_name)="Forged Quantum Companion"	,(skip_zero)=true	];
+	int32 awakened_behemoth_slayer		= 81	[(display_name)="Awakened Behemoth Slayer"	,(skip_zero)=true	];
+	int32 finished_modified_em_gauss	= 82	[(display_name)="Finished Modified EM Gauss"	,(skip_zero)=true	];
+	int32 installed_lc_capacitor		= 83	[(display_name)="Installed LC Capacitor"	,(skip_zero)=true	];	
 	int32 entered_garrisons			= 18	[(display_name)="Entered Garrisons"		,(skip_zero)=true	];
 	int32 used_rif_installer		= 19	[(display_name)="Used RIF Installer"		,(skip_zero)=true	];
 	int32 entered_dsfs			= 77	[(display_name)="Entered DSFs"			,(skip_zero)=true	];
@@ -233,7 +237,7 @@ message Bonus {
 	int32 win_speed				= 72	[(display_name)="Win Speed"			,(skip_zero)=true	];
 	int32 challenge_win			= 73	[(display_name)="Challenge Win"			,(skip_zero)=true	];
 	int32 friendly_fire			= 74	[(display_name)="Friendly Fire"			,(skip_zero)=true	];
-	//next = 80
+	//next = 84
 }
 
 //------------------------------------------------------------------
@@ -243,7 +247,7 @@ message Bonus {
 enum MapType {
 	MAP_NONE = 0;
 	MAP_SAN = 1	[(enum_display_name)="Sandbox"				,(enum_display_abbreviation)="San"	];
-	MAP_JUN = 2	[(enum_display_name)="Junkyard"				,(enum_display_abbreviation)="Jun"	];
+	MAP_YRD = 2	[(enum_display_name)="Scrapyard"			,(enum_display_abbreviation)="Yrd"	];
 	MAP_MAT = 3	[(enum_display_name)="Materials"			,(enum_display_abbreviation)="Mat"	];
 	MAP_FAC = 4	[(enum_display_name)="Factory"				,(enum_display_abbreviation)="Fac"	];
 	MAP_RES = 5	[(enum_display_name)="Research"				,(enum_display_abbreviation)="Res"	];
@@ -253,6 +257,7 @@ enum MapType {
 	MAP_EXI = 9	[(enum_display_name)="Exiles"				,(enum_display_abbreviation)="Exi"	];
 	MAP_STO = 10	[(enum_display_name)="Storage"				,(enum_display_abbreviation)="Sto"	];
 	MAP_REC = 11	[(enum_display_name)="Recycling"			,(enum_display_abbreviation)="Rec"	];
+	MAP_SCR = 37	[(enum_display_name)="Scraptown"			,(enum_display_abbreviation)="Scr"	];
 	MAP_WAS = 12	[(enum_display_name)="Waste"				,(enum_display_abbreviation)="Was"	];
 	MAP_GAR = 13	[(enum_display_name)="Garrison"				,(enum_display_abbreviation)="Gar"	];
 	MAP_DSF = 35	[(enum_display_name)="DSF"				,(enum_display_abbreviation)="DSF"	];
@@ -481,6 +486,7 @@ message BestStates {
 	int32 utility_shielding		= 31	[(display_name)="Utility Shielding"		,(skip_zero)=true	];
 	int32 weapon_shielding		= 32	[(display_name)="Weapon Shielding"		,(skip_zero)=true	];
 	int32 point_defense_rating	= 33	[(display_name)="Point Defense Rating"		,(skip_zero)=true	];
+	int32 projectile_deflection	= 64	[(display_name)="Projectile Deflection"		,(skip_zero)=true	];
 	int32 thermal_conversion	= 34	[(display_name)="Thermal Conversion"		,(skip_zero)=true	]; // related items removed as of Beta 11
 	int32 reclamation_efficiency	= 35	[(display_name)="Reclamation Efficiency"	,(skip_zero)=true	]; // related items removed as of Beta 11
 	int32 weapon_cycling		= 36	[(display_name)="Weapon Cycling"		,(skip_zero)=true	];
@@ -510,7 +516,7 @@ message BestStates {
 	int32 relay_coupler_value	= 59	[(display_name)="Relay Coupler Value"		,(skip_zero)=true	];
 	int32 authchip_count		= 60	[(display_name)="Authchip Count"		,(skip_zero)=true	];
 	int32 trap_extractor_capacity	= 62	[(display_name)="Trap Extractor Capacity"	,(skip_zero)=true	];
-					// next ID: 64
+					// next ID: 65
 }
 
 //------------------------------------------------------------------
@@ -617,6 +623,7 @@ message Options {
 	string			font_set		= 6 [(display_name)="Font"		];
 	int32			map_width		= 7 [(display_name)="Map Width"		]; // technically scoresheet combines w*h in a single row named "Map View"
 	int32			map_height		= 8 [(display_name)="Map Height"	];
+	int32			zoom_use		= 13 [(display_name)="Zoom Use (%)"	];
 	bool			tactical_hud		= 9 [(display_name)="Tactical HUD"	];
 	string			render_filters_map	= 10 [(display_name)="Map Filters"	];
 	string			render_filters		= 11 [(display_name)="Filters"		];
@@ -653,6 +660,7 @@ enum SchematicMethodType {
 	SCHEMATIC_METHOD_REPORTED	= 5	[(enum_display_name)="Reported"		];
 	SCHEMATIC_METHOD_ZIONITE_INTEL	= 6	[(enum_display_name)="Z-intel"		];
 	SCHEMATIC_METHOD_ARCHIVE	= 7	[(enum_display_name)="Archive"		];
+	SCHEMATIC_METHOD_EXTRAPOLATED	= 8	[(enum_display_name)="Extrapolated"	];
 }
 
 message Route {
@@ -929,6 +937,16 @@ message Stats {
 			int32 artisan             = 102 [ (display_name)="Artisan"             ,(skip_zero)=true ];
 			int32 cobbler             = 103 [ (display_name)="Cobbler"             ,(skip_zero)=true ];
 			int32 subdweller          = 101 [ (display_name)="Subdweller"          ,(skip_zero)=true ];
+			int32 bolteater           = 108 [ (display_name)="Bolteater"           ,(skip_zero)=true ];
+			int32 federalist          = 109 [ (display_name)="Federalist"          ,(skip_zero)=true ];
+			int32 explorer            = 110 [ (display_name)="Explorer"            ,(skip_zero)=true ];
+			int32 ranger              = 111 [ (display_name)="Ranger"              ,(skip_zero)=true ];
+			int32 guru                = 112 [ (display_name)="Guru"                ,(skip_zero)=true ];
+			int32 scientist           = 113 [ (display_name)="Scientist"           ,(skip_zero)=true ];
+			int32 scrapper            = 104 [ (display_name)="Scrapper"            ,(skip_zero)=true ];
+			int32 elite               = 105 [ (display_name)="Elite"               ,(skip_zero)=true ];
+			int32 scrapoid            = 106 [ (display_name)="Scrapoid"            ,(skip_zero)=true ];
+			int32 scraphulk           = 107 [ (display_name)="Scraphulk"           ,(skip_zero)=true ];
 			int32 zionite             = 53  [ (display_name)="Zionite"             ,(skip_zero)=true ];
 			int32 z_technician        = 54  [ (display_name)="Z-Technician"        ,(skip_zero)=true ];
 			int32 z_courier           = 55  [ (display_name)="Z-Courier"           ,(skip_zero)=true ];
@@ -971,7 +989,7 @@ message Stats {
 			int32 abomination         = 90  [ (display_name)="Abomination"         ,(skip_zero)=true ];
 			int32 anomaly             = 91  [ (display_name)="Anomaly"             ,(skip_zero)=true ];
 			int32 player              = 92  [ (display_name)="Player"              ,(skip_zero)=true ];
-			// next = 104
+			// next = 114
 		}
 
 		message BestKillStreak {
@@ -995,6 +1013,12 @@ message Stats {
 	}
 
 	message Combat {
+		message HostileShotsFired {
+			int32 overall                 = 1                                                               ;
+			int32 missed                  = 2 [ (display_name)="Missed"                                    ];
+			int32 deflected               = 3 [ (display_name)="Deflected"                                 ];
+		}
+		
 		message DamageTaken {
 			int32 overall                 = 1                                                               ;
 			int32 core                    = 2 [ (display_name)="Core"                                      ];
@@ -1005,7 +1029,7 @@ message Stats {
 			int32 ignored_by_resistances  = 8 [ (display_name)="Ignored by Resistances"  ,(skip_zero)=true ];
 			int32 regen_repair_parts      = 7 [ (display_name)="Regen/Repaired (Parts)"  ,(skip_zero)=true ];
 		}
-
+		
 		message VolleysFired {
 			int32 overall = 1                              ;
 			int32 largest = 2 [ (display_name)="Largest"  ];
@@ -1213,6 +1237,7 @@ message Stats {
 			int32 le_corruption = 2 [ (display_name)="LE Corruption" ,(skip_zero)=true ];
 		}
 
+		HostileShotsFired   hostile_shots_fired    = 24 [ (display_name)="Hostile Shots Fired"    ];
 		DamageTaken         damage_taken           = 1  [ (display_name)="Damage Taken"           ];
 		int32               core_remaining_percent = 2  [ (display_name)="Core Remaining (%)"     ];
 		VolleysFired        volleys_fired          = 3  [ (display_name)="Volleys Fired"          ];
@@ -1292,9 +1317,15 @@ message Stats {
 			int32 tactical_retreats   = 3 [ (display_name)="Tactical Retreats"    ];
 		}
 
+		message IdMasksUsed {
+			int32 overall       = 1                                    ;
+			int32 iff_responses = 2 [ (display_name)="IFF Responses"  ];
+		}
+
 		int32                distress_signals      = 1 [ (display_name)="Distress Signals"       ];
 		CommunicationsJammed communications_jammed = 2 [ (display_name)="Communications Jammed"  ];
 		TimesSpotted         times_spotted         = 3 [ (display_name)="Times Spotted"          ];
+		IdMasksUsed          id_masks_used         = 4 [ (display_name)="ID Masks Used"          ];
 	}
 
 	message Traps {
@@ -1317,7 +1348,7 @@ message Stats {
 			int32 triggered = 3 [ (display_name)="Triggered"  ];
 		}
 
-		message PowerSourcesRigged {
+		message ObjectsRigged {
 			int32 overall  = 1 [                            (skip_zero)=true ];
 			int32 exploded = 2 [ (display_name)="Exploded" ,(skip_zero)=true ];
 		}
@@ -1333,7 +1364,7 @@ message Stats {
 		TrapsExtracted     traps_extracted      = 4 [ (display_name)="Traps Extracted"                        ];
 		int32              fabricated_traps     = 5 [ (display_name)="Fabricated Traps"     ,(skip_zero)=true ];
 		int32              most_traps_carried   = 8 [ (display_name)="Most Traps Carried"   ,(skip_zero)=true ];
-		PowerSourcesRigged power_sources_rigged = 6 [ (display_name)="Power Sources Rigged"                   ];
+		ObjectsRigged      objects_rigged       = 6 [ (display_name)="Objects Rigged"                         ];
 		TimeBombsActivated time_bombs_activated = 7 [ (display_name)="Time Bombs Activated"                   ];
 	}
 
@@ -1349,8 +1380,9 @@ message Stats {
 		}
 
 		MachinesDisabled machines_disabled     = 1 [ (display_name)="Machines Disabled"                       ];
-		int32            machines_sabotaged    = 2 [ (display_name)="Machines Sabotaged"                      ];
 		int32            machines_repaired     = 6 [ (display_name)="Machines Repaired"                       ];
+		int32            machines_dismantled   = 7 [ (display_name)="Machines Dismantled"                     ];
+		int32            machines_sabotaged    = 2 [ (display_name)="Machines Sabotaged"                      ];
 		int32            garrisons_compromised = 3 [ (display_name)="Garrisons Compromised" ,(skip_zero)=true ]; // deprecated as of Beta 12 and not loaded, but leaving here for now
 		int32            overloaded_fab_kills  = 4 [ (display_name)="Overloaded Fab Kills"                    ];
 		int32            fab_network_shutdowns = 5 [ (display_name)="Fab Network Shutdowns" ,(skip_zero)=true ]; // deprecated as of Beta 11 and not loaded, but leaving here for now
