@@ -1,5 +1,5 @@
 
-// Cogmind - Beta 13 (build 231220b)
+// Cogmind - Beta 13 (build 240206a)
 
 syntax = "proto3";
 
@@ -598,6 +598,11 @@ message Game {
 // Options
 //------------------------------------------------------------------
 
+enum UiLayoutType {
+	UI_LAYOUT_60		= 0	[(enum_display_name)="60-row"		];
+	UI_LAYOUT_45		= 1	[(enum_display_name)="45-row"		];
+	UI_LAYOUT_45_MODAL	= 2	[(enum_display_name)="Modal 45-row"	];
+}
 enum MovementInputType {
 	MOVEMENT_INPUT_NUMPAD	= 0	[(enum_display_name)="Numpad"	];
 	MOVEMENT_INPUT_ARROWS	= 1	[(enum_display_name)="Arrows"	];
@@ -615,6 +620,7 @@ enum SteamType {
 	STEAM_UNINITIALIZED	= 2	[(enum_display_name)="Uninitialized"	];
 }
 message Options {
+	UiLayoutType		layout			= 14 [(display_name)="Layout"		];
 	bool			ascii			= 1 [(display_name)="ASCII"		];
 	bool			keyboard		= 2 [(display_name)="Keyboard"		];
 	MovementInputType	movement		= 3 [(display_name)="Movement"		];
@@ -1016,7 +1022,8 @@ message Stats {
 		message HostileShotsFired {
 			int32 overall                 = 1                                                               ;
 			int32 missed                  = 2 [ (display_name)="Missed"                                    ];
-			int32 deflected               = 3 [ (display_name)="Deflected"                                 ];
+			int32 intercepted             = 3 [ (display_name)="Intercepted"             ,(skip_zero)=true ];
+			int32 deflected               = 4 [ (display_name)="Deflected"               ,(skip_zero)=true ];
 		}
 		
 		message DamageTaken {
@@ -1237,30 +1244,30 @@ message Stats {
 			int32 le_corruption = 2 [ (display_name)="LE Corruption" ,(skip_zero)=true ];
 		}
 
-		HostileShotsFired   hostile_shots_fired    = 24 [ (display_name)="Hostile Shots Fired"    ];
-		DamageTaken         damage_taken           = 1  [ (display_name)="Damage Taken"           ];
-		int32               core_remaining_percent = 2  [ (display_name)="Core Remaining (%)"     ];
-		VolleysFired        volleys_fired          = 3  [ (display_name)="Volleys Fired"          ];
-		ShotsFired          shots_fired            = 4  [ (display_name)="Shots Fired"            ];
-		ShotsHitRobots      shots_hit_robots       = 5  [ (display_name)="Shots Hit Robots"       ];
-		MeleeAttacks        melee_attacks          = 6  [ (display_name)="Melee Attacks"          ];
-		DamageInflicted     damage_inflicted       = 7  [ (display_name)="Damage Inflicted"       ];
-		HighestCorruption   highest_corruption     = 8  [ (display_name)="Highest Corruption"     ];
-		OverloadShots       overload_shots         = 9  [ (display_name)="Overload Shots"         ];
-		OverflowDamage      overflow_damage        = 10 [ (display_name)="Overflow Damage"        ];
-		Knockbacks          knockbacks             = 11 [ (display_name)="Knockbacks"             ];
-		SelfInflictedDamage self_inflicted_damage  = 12 [ (display_name)="Self-Inflicted Damage"  ];
-		TargetsRammed       targets_rammed         = 13 [ (display_name)="Targets Rammed"         ];
-		HighestTemperature  highest_temperature    = 14 [ (display_name)="Highest Temperature"    ];
-		SiegeActivations    siege_activations      = 15 [ (display_name)="Siege Activations"      ];
-		RobotsCorrupted     robots_corrupted       = 16 [ (display_name)="Robots Corrupted"       ];
-		RobotsMelted        robots_melted          = 17 [ (display_name)="Robots Melted"          ];
-		int32               parts_sabotaged        = 18 [ (display_name)="Parts Sabotaged"        ];
-		int32               parts_stolen           = 19 [ (display_name)="Parts Stolen"           ];
-		int32               parts_stripped         = 20 [ (display_name)="Parts Stripped"         ];
-		int32               power_chain_reactions  = 21 [ (display_name)="Power Chain Reactions"  ];
-		int32               missiles_intercepted   = 22 [ (display_name)="Missiles Intercepted"   ];
-		LatentEnergyUsed    latent_energy_used     = 23 [ (display_name)="Latent Energy Used"     ];
+		HostileShotsFired   hostile_shots_fired    = 24 [ (display_name)="Hostile Shots Fired"                       ];
+		DamageTaken         damage_taken           = 1  [ (display_name)="Damage Taken"                              ];
+		int32               core_remaining_percent = 2  [ (display_name)="Core Remaining (%)"                        ];
+		VolleysFired        volleys_fired          = 3  [ (display_name)="Volleys Fired"                             ];
+		ShotsFired          shots_fired            = 4  [ (display_name)="Shots Fired"                               ];
+		ShotsHitRobots      shots_hit_robots       = 5  [ (display_name)="Shots Hit Robots"                          ];
+		MeleeAttacks        melee_attacks          = 6  [ (display_name)="Melee Attacks"                             ];
+		DamageInflicted     damage_inflicted       = 7  [ (display_name)="Damage Inflicted"                          ];
+		HighestCorruption   highest_corruption     = 8  [ (display_name)="Highest Corruption"                        ];
+		OverloadShots       overload_shots         = 9  [ (display_name)="Overload Shots"                            ];
+		OverflowDamage      overflow_damage        = 10 [ (display_name)="Overflow Damage"                           ];
+		Knockbacks          knockbacks             = 11 [ (display_name)="Knockbacks"                                ];
+		SelfInflictedDamage self_inflicted_damage  = 12 [ (display_name)="Self-Inflicted Damage"                     ];
+		TargetsRammed       targets_rammed         = 13 [ (display_name)="Targets Rammed"                            ];
+		HighestTemperature  highest_temperature    = 14 [ (display_name)="Highest Temperature"                       ];
+		SiegeActivations    siege_activations      = 15 [ (display_name)="Siege Activations"                         ];
+		RobotsCorrupted     robots_corrupted       = 16 [ (display_name)="Robots Corrupted"                          ];
+		RobotsMelted        robots_melted          = 17 [ (display_name)="Robots Melted"                             ];
+		int32               parts_sabotaged        = 18 [ (display_name)="Parts Sabotaged"                           ];
+		int32               parts_stolen           = 19 [ (display_name)="Parts Stolen"                              ];
+		int32               parts_stripped         = 20 [ (display_name)="Parts Stripped"                            ];
+		int32               power_chain_reactions  = 21 [ (display_name)="Power Chain Reactions"                     ];
+		int32               missiles_intercepted   = 22 [ (display_name)="Missiles Intercepted"    ,(skip_zero)=true ]; // deprecated as of Beta 13, moved elsewhere and this value not loaded, but leaving here for now
+		LatentEnergyUsed    latent_energy_used     = 23 [ (display_name)="Latent Energy Used"                        ];
 	}
 
 	message Alert {
