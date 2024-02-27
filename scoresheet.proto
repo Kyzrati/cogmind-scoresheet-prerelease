@@ -1,5 +1,5 @@
 
-// Cogmind - Beta 13 (build 240206a)
+// Cogmind - Beta 13 (build 240227c)
 
 syntax = "proto3";
 
@@ -188,6 +188,7 @@ message Bonus {
 	int32 destroyed_zimprinter		= 26	[(display_name)="Destroyed Z-Imprinter"		,(skip_zero)=true	];
 	int32 triggered_deep_caves_wall		= 27	[(display_name)="Triggered Deep Caves Wall"	,(skip_zero)=true	];
 	int32 exposed_golem_chamber		= 28	[(display_name)="Exposed GOLEM Chamber"		,(skip_zero)=true	];
+	int32 acquired_eca			= 84	[(display_name)="Acquired ECA"			,(skip_zero)=true	];	
 	int32 met_zhirov			= 29	[(display_name)="Met Zhirov"			,(skip_zero)=true	];
 	int32 met_warlord_at_base		= 30	[(display_name)="Met Warlord at Base"		,(skip_zero)=true	];
 	int32 mainc_attacked_warlord		= 31	[(display_name)="MAIN.C Attacked Warlord"	,(skip_zero)=true	];
@@ -237,7 +238,7 @@ message Bonus {
 	int32 win_speed				= 72	[(display_name)="Win Speed"			,(skip_zero)=true	];
 	int32 challenge_win			= 73	[(display_name)="Challenge Win"			,(skip_zero)=true	];
 	int32 friendly_fire			= 74	[(display_name)="Friendly Fire"			,(skip_zero)=true	];
-	//next = 84
+	//next = 85
 }
 
 //------------------------------------------------------------------
@@ -599,9 +600,9 @@ message Game {
 //------------------------------------------------------------------
 
 enum UiLayoutType {
-	UI_LAYOUT_60		= 0	[(enum_display_name)="60-row"		];
-	UI_LAYOUT_45		= 1	[(enum_display_name)="45-row"		];
-	UI_LAYOUT_45_MODAL	= 2	[(enum_display_name)="Modal 45-row"	];
+	UI_LAYOUT_60		= 0	[(enum_display_name)="Full"		];
+	UI_LAYOUT_45		= 1	[(enum_display_name)="Semi-modal"	];
+	UI_LAYOUT_45_MODAL	= 2	[(enum_display_name)="Modal"		];
 }
 enum MovementInputType {
 	MOVEMENT_INPUT_NUMPAD	= 0	[(enum_display_name)="Numpad"	];
