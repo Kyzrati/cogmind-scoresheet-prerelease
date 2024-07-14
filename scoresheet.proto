@@ -1,5 +1,5 @@
 
-// Cogmind - Beta 13 (build 240227c)
+// Cogmind - Beta 14 (build 240714a)
 
 syntax = "proto3";
 
@@ -176,11 +176,15 @@ message Bonus {
 	int32 awakened_behemoth_slayer		= 81	[(display_name)="Awakened Behemoth Slayer"	,(skip_zero)=true	];
 	int32 finished_modified_em_gauss	= 82	[(display_name)="Finished Modified EM Gauss"	,(skip_zero)=true	];
 	int32 installed_lc_capacitor		= 83	[(display_name)="Installed LC Capacitor"	,(skip_zero)=true	];	
+	int32 subatomizer_sterilization		= 89	[(display_name)="Subatomizer Sterilization"	,(skip_zero)=true	];		
 	int32 entered_garrisons			= 18	[(display_name)="Entered Garrisons"		,(skip_zero)=true	];
 	int32 used_rif_installer		= 19	[(display_name)="Used RIF Installer"		,(skip_zero)=true	];
 	int32 entered_dsfs			= 77	[(display_name)="Entered DSFs"			,(skip_zero)=true	];
 	int32 network_hubs_disabled		= 20	[(display_name)="Network Hubs Disabled"		,(skip_zero)=true	];
 	int32 aligned_with_farcom		= 21	[(display_name)="Aligned with FarCom"		,(skip_zero)=true	];
+	int32 delivered_subcon_basin		= 88	[(display_name)="Delivered SUBCON Basin"	,(skip_zero)=true	];
+	int32 registered_with_ufd		= 86	[(display_name)="Registered with UFD"		,(skip_zero)=true	];
+	int32 met_optimus_in_hq			= 87	[(display_name)="Met Optimus in HQ"		,(skip_zero)=true	];
 	int32 met_data_miner			= 22	[(display_name)="Met Data Miner"		,(skip_zero)=true	];
 	int32 used_data_conduit			= 23	[(display_name)="Used Data Conduit"		,(skip_zero)=true	];
 	int32 met_imprinter			= 24	[(display_name)="Met Imprinter"			,(skip_zero)=true	];
@@ -197,6 +201,7 @@ message Bonus {
 	int32 a7_reached_mainframe		= 34	[(display_name)="A7 Reached Mainframe"		,(skip_zero)=true	];
 	int32 met_r17_at_cetus			= 35	[(display_name)="Met R17 at Cetus"		,(skip_zero)=true	];
 	int32 read_decrypted_archives		= 36	[(display_name)="Read Decrypted Archives"	,(skip_zero)=true	];
+	int32 bested_vlgr5			= 85	[(display_name)="Bested VL-GR5"			,(skip_zero)=true	];
 	int32 found_hidden_lab			= 37	[(display_name)="Found Hidden Lab"		,(skip_zero)=true	];
 	int32 decrypted_a0_command		= 38	[(display_name)="Decrypted A0 Command"		,(skip_zero)=true	];
 	int32 used_core_reset_matrix		= 39	[(display_name)="Used Core Reset Matrix"	,(skip_zero)=true	];
@@ -238,7 +243,7 @@ message Bonus {
 	int32 win_speed				= 72	[(display_name)="Win Speed"			,(skip_zero)=true	];
 	int32 challenge_win			= 73	[(display_name)="Challenge Win"			,(skip_zero)=true	];
 	int32 friendly_fire			= 74	[(display_name)="Friendly Fire"			,(skip_zero)=true	];
-	//next = 85
+	//next = 90
 }
 
 //------------------------------------------------------------------
@@ -619,6 +624,7 @@ enum SteamType {
 	STEAM_NONE		= 0	[(enum_display_name)="None"		];
 	STEAM_INITIALIZED	= 1	[(enum_display_name)="Initialized"	];
 	STEAM_UNINITIALIZED	= 2	[(enum_display_name)="Uninitialized"	];
+	STEAM_DECK		= 3	[(enum_display_name)="Deck"		];
 }
 message Options {
 	UiLayoutType		layout			= 14 [(display_name)="Layout"		];
@@ -1531,6 +1537,7 @@ message Stats {
 				int32 detonate   = 5  [ (display_name)="Detonate"   ,(skip_zero)=true ];
 				int32 disrupt    = 6  [ (display_name)="Disrupt"    ,(skip_zero)=true ];
 				int32 operators  = 7  [ (display_name)="Operators"  ,(skip_zero)=true ];
+				int32 skim       = 11 [ (display_name)="Skim"       ,(skip_zero)=true ];
 				int32 sabotage   = 8  [ (display_name)="Sabotage"   ,(skip_zero)=true ];
 				int32 search     = 9  [ (display_name)="Search"     ,(skip_zero)=true ];
 				int32 override   = 10 [ (display_name)="Override"   ,(skip_zero)=true ];
@@ -1551,6 +1558,7 @@ message Stats {
 			message RepairStations {
 				int32 overall   = 1                                                 ;
 				int32 mechanics = 2 [ (display_name)="Mechanics" ,(skip_zero)=true ];
+				int32 patch     = 3 [ (display_name)="Patch"     ,(skip_zero)=true ];
 			}
 
 			message RecyclingUnits {
@@ -1560,6 +1568,9 @@ message Stats {
 				int32 recyclers = 4 [ (display_name)="Recyclers" ,(skip_zero)=true ];
 				int32 mask      = 5 [ (display_name)="Mask"      ,(skip_zero)=true ];
 				int32 tunnel    = 6 [ (display_name)="Tunnel"    ,(skip_zero)=true ];
+				int32 fedlink   = 7 [ (display_name)="Fedlink"   ,(skip_zero)=true ];
+				int32 scrapoids = 8 [ (display_name)="Scrapoids" ,(skip_zero)=true ];
+				int32 scraphulk = 9 [ (display_name)="Scraphulk" ,(skip_zero)=true ];
 			}
 
 			message Scanalyzers {
