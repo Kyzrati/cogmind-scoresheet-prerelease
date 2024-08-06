@@ -1,5 +1,5 @@
 
-// Cogmind - Beta 14 (build 240714a)
+// Cogmind - Beta 14 (build 240806a)
 
 syntax = "proto3";
 
@@ -175,6 +175,7 @@ message Bonus {
 	int32 forged_quantum_companion		= 80	[(display_name)="Forged Quantum Companion"	,(skip_zero)=true	];
 	int32 awakened_behemoth_slayer		= 81	[(display_name)="Awakened Behemoth Slayer"	,(skip_zero)=true	];
 	int32 finished_modified_em_gauss	= 82	[(display_name)="Finished Modified EM Gauss"	,(skip_zero)=true	];
+	int32 built_pl3xns_obliterator		= 90	[(display_name)="Built PL-3XN's Obliterator"	,(skip_zero)=true	];	
 	int32 installed_lc_capacitor		= 83	[(display_name)="Installed LC Capacitor"	,(skip_zero)=true	];	
 	int32 subatomizer_sterilization		= 89	[(display_name)="Subatomizer Sterilization"	,(skip_zero)=true	];		
 	int32 entered_garrisons			= 18	[(display_name)="Entered Garrisons"		,(skip_zero)=true	];
@@ -243,7 +244,7 @@ message Bonus {
 	int32 win_speed				= 72	[(display_name)="Win Speed"			,(skip_zero)=true	];
 	int32 challenge_win			= 73	[(display_name)="Challenge Win"			,(skip_zero)=true	];
 	int32 friendly_fire			= 74	[(display_name)="Friendly Fire"			,(skip_zero)=true	];
-	//next = 90
+	//next = 91
 }
 
 //------------------------------------------------------------------
@@ -818,6 +819,12 @@ message Stats {
 			int32 special_melee_weapon = 25 [ (display_name)="Special Melee Weapon" ,(skip_zero)=true ];
 		}
 
+		message PeakBuildRating {
+			int32 overall        = 1                                    ;
+			int32 average_rating = 2 [ (display_name)="Average Rating" ];
+			int32 on_entrance    = 3 [ (display_name)="On Entrance"    ];
+		}
+
 		message HeaviestBuild {
 			int32 overall                   = 1                                              ;
 			int32 greatest_support          = 2 [ (display_name)="Greatest Support"         ];
@@ -844,6 +851,7 @@ message Stats {
 		PartsAttached            parts_attached             = 2 [ (display_name)="Parts Attached"              ];
 		PartsLost                parts_lost                 = 3 [ (display_name)="Parts Lost"                  ];
 		AverageSlotUsagePercent  average_slot_usage_percent = 4 [ (display_name)="Average Slot Usage (%)"      ];
+		PeakBuildRating          peak_build_rating          = 9 [ (display_name)="Peak Build Rating"           ];
 		int32                    naked_turns                = 5 [ (display_name)="Naked Turns"                 ];
 		HeaviestBuild            heaviest_build             = 6 [ (display_name)="Heaviest Build"              ];
 		LargestInventoryCapacity largest_inventory_capacity = 7 [ (display_name)="Largest Inventory Capacity"  ];
@@ -919,6 +927,7 @@ message Stats {
 			int32 q_series            = 26  [ (display_name)="Q-Series"            ,(skip_zero)=true ];
 			int32 behemoth            = 27  [ (display_name)="Behemoth"            ,(skip_zero)=true ];
 			int32 compactor           = 28  [ (display_name)="Compactor"           ,(skip_zero)=true ];
+			int32 armor_guard         = 114 [ (display_name)="Armor Guard"         ,(skip_zero)=true ];
 			int32 cetus_guard         = 29  [ (display_name)="Cetus Guard"         ,(skip_zero)=true ];
 			int32 quarantine_guard    = 30  [ (display_name)="Quarantine Guard"    ,(skip_zero)=true ];
 			int32 s7_guard            = 31  [ (display_name)="S7 Guard"            ,(skip_zero)=true ];
@@ -1002,7 +1011,7 @@ message Stats {
 			int32 abomination         = 90  [ (display_name)="Abomination"         ,(skip_zero)=true ];
 			int32 anomaly             = 91  [ (display_name)="Anomaly"             ,(skip_zero)=true ];
 			int32 player              = 92  [ (display_name)="Player"              ,(skip_zero)=true ];
-			// next = 114
+			// next = 115
 		}
 
 		message BestKillStreak {
