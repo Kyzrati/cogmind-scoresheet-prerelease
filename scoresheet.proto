@@ -1,5 +1,5 @@
 
-// Cogmind - Beta 14 (build 241104a)
+// Cogmind - Beta 15 (build 250226a)
 
 syntax = "proto3";
 
@@ -215,9 +215,12 @@ message Bonus {
 	int32 pursued_by_intercept		= 45	[(display_name)="Pursued by Intercept"		,(skip_zero)=true	];
 	int32 acquired_sgemp			= 46	[(display_name)="Acquired SGEMP"		,(skip_zero)=true	];
 	int32 met_sigix				= 47	[(display_name)="Met Sigix"			,(skip_zero)=true	];
+	int32 destroyed_superfortress		= 91	[(display_name)="Destroyed Superfortress"	,(skip_zero)=true	];
+	int32 met_optimus_at_protoforge		= 92	[(display_name)="Met Optimus at Protoforge"	,(skip_zero)=true	];
+	int32 optimus_survived_to_0b1		= 93	[(display_name)="Optimus Survived to 0b1"	,(skip_zero)=true	];	
 	int32 detonated_l2_power_cell		= 48	[(display_name)="Detonated L2 Power Cell"	,(skip_zero)=true	];
 	int32 activated_exoskeleton		= 49	[(display_name)="Activated Exoskeleton"		,(skip_zero)=true	];
-	int32 integrated_exoskeleton		= 78	[(display_name)="Integrated Exoskeleton"	,(skip_zero)=true	];	
+	int32 integrated_exoskeleton		= 78	[(display_name)="Integrated Exoskeleton"	,(skip_zero)=true	];
 	int32 delivered_sgemp			= 50	[(display_name)="Delivered SGEMP"		,(skip_zero)=true	];
 	int32 recovered_sigix_corpse		= 51	[(display_name)="Recovered Sigix Corpse"	,(skip_zero)=true	];
 	int32 escaped_with_sigix		= 52	[(display_name)="Escaped with Sigix"		,(skip_zero)=true	];
@@ -244,7 +247,7 @@ message Bonus {
 	int32 win_speed				= 72	[(display_name)="Win Speed"			,(skip_zero)=true	];
 	int32 challenge_win			= 73	[(display_name)="Challenge Win"			,(skip_zero)=true	];
 	int32 friendly_fire			= 74	[(display_name)="Friendly Fire"			,(skip_zero)=true	];
-	//next = 91
+	//next = 94
 }
 
 //------------------------------------------------------------------
@@ -286,6 +289,7 @@ enum MapType {
 	MAP_QUA = 28	[(enum_display_name)="Quarantine"			,(enum_display_abbreviation)="Qua"	];
 	MAP_TES = 29	[(enum_display_name)="Testing"				,(enum_display_abbreviation)="Tes"	];
 	MAP_SEC = 30	[(enum_display_name)="Section 7"			,(enum_display_abbreviation)="Sec"	];
+	MAP_FRG = 38	[(enum_display_name)="Protoforge"			,(enum_display_abbreviation)="Frg"	];
 	MAP_COM = 31	[(enum_display_name)="Command"				,(enum_display_abbreviation)="Com"	];
 	MAP_AC0 = 32	[(enum_display_name)="Access_0"				,(enum_display_abbreviation)="Ac0"	];
 	MAP_LAI = 33	[(enum_display_name)="Lair"				,(enum_display_abbreviation)="Lai"	];
@@ -299,6 +303,8 @@ enum MapType {
 	MAP_W06 = 1006	[(enum_display_name)="Near Former Tau Ceti IV"		,(enum_display_abbreviation)="W06"	];
 	MAP_W07 = 1007	[(enum_display_name)="Free Derelict Territories"	,(enum_display_abbreviation)="W07"	];
 	MAP_W08 = 1008	[(enum_display_name)="By MAIN.C's Side"			,(enum_display_abbreviation)="W08"	];
+	MAP_W09 = 1009	[(enum_display_name)="0bPrime"				,(enum_display_abbreviation)="W09"	];
+	// next ID: 39
 }
 enum HeatLevelType {
 	HEAT_COOL	= 0	[(enum_display_name)="Cool"	];
@@ -530,7 +536,7 @@ message BestStates {
 	int32 relay_coupler_value	= 59	[(display_name)="Relay Coupler Value"		,(skip_zero)=true	];
 	int32 authchip_count		= 60	[(display_name)="Authchip Count"		,(skip_zero)=true	];
 	int32 trap_extractor_capacity	= 62	[(display_name)="Trap Extractor Capacity"	,(skip_zero)=true	];
-					// next ID: 65
+	// next ID: 65
 }
 
 //------------------------------------------------------------------
@@ -976,6 +982,9 @@ message Stats {
 			int32 enhanced_qseries    = 93  [ (display_name)="Enhanced Q-Series"   ,(skip_zero)=true ];
 			int32 lightning           = 37  [ (display_name)="Lightning"           ,(skip_zero)=true ];
 			int32 hotshot             = 116 [ (display_name)="Hotshot"             ,(skip_zero)=true ];
+			int32 decapitator         = 117 [ (display_name)="Decapitator"         ,(skip_zero)=true ];
+			int32 immortal            = 118 [ (display_name)="Immortal"            ,(skip_zero)=true ];
+			int32 overlord            = 119 [ (display_name)="Overlord"            ,(skip_zero)=true ];
 			int32 tracker             = 38  [ (display_name)="Tracker"             ,(skip_zero)=true ];
 			int32 combat_programmer   = 39  [ (display_name)="Combat Programmer"   ,(skip_zero)=true ];
 			int32 investigator        = 40  [ (display_name)="Investigator"        ,(skip_zero)=true ];
@@ -1047,7 +1056,7 @@ message Stats {
 			int32 abomination         = 90  [ (display_name)="Abomination"         ,(skip_zero)=true ];
 			int32 anomaly             = 91  [ (display_name)="Anomaly"             ,(skip_zero)=true ];
 			int32 player              = 92  [ (display_name)="Player"              ,(skip_zero)=true ];
-			// next = 117
+			// next = 120
 		}
 
 		message BestKillStreak {
@@ -1577,8 +1586,8 @@ message Stats {
 			int32 zone_layout             = 43 [ (display_name)="Zone Layout"             ,(skip_zero)=true ];
 			int32 download_registry       = 54 [ (display_name)="Garrison Registry"       ,(skip_zero)=true ];
 			int32 download_navigation     = 55 [ (display_name)="Patrol Navigation"       ,(skip_zero)=true ];
-			int32 download_security       = 56 [ (display_name)="Security Stations"       ,(skip_zero)=true ];			
-			int32 derelict_proto_id_bank  = 44 [ (display_name)="Derelict Proto ID Bank"  ,(skip_zero)=true ];
+			int32 download_security       = 56 [ (display_name)="Security Stations"       ,(skip_zero)=true ];
+			int32 proto_id_catalog        = 44 [ (display_name)="Proto ID Catalog"        ,(skip_zero)=true ];
 			int32 protovariant_controls   = 45 [ (display_name)="Protovariant Controls"   ,(skip_zero)=true ];
 			int32 activate_exoskeleton    = 46 [ (display_name)="Activate Exoskeleton"    ,(skip_zero)=true ];
 			int32 disengage_seal          = 47 [ (display_name)="Disengage Seal"          ,(skip_zero)=true ];
