@@ -1,5 +1,5 @@
 
-// Cogmind - Beta 15 (build 250226a)
+// Cogmind - Beta 15 (build 250408a)
 
 syntax = "proto3";
 
@@ -217,6 +217,7 @@ message Bonus {
 	int32 met_sigix				= 47	[(display_name)="Met Sigix"			,(skip_zero)=true	];
 	int32 destroyed_superfortress		= 91	[(display_name)="Destroyed Superfortress"	,(skip_zero)=true	];
 	int32 met_optimus_at_protoforge		= 92	[(display_name)="Met Optimus at Protoforge"	,(skip_zero)=true	];
+	int32 completed_drillbomb_mission	= 94	[(display_name)="Completed Drillbomb Mission"	,(skip_zero)=true	];	
 	int32 optimus_survived_to_0b1		= 93	[(display_name)="Optimus Survived to 0b1"	,(skip_zero)=true	];	
 	int32 detonated_l2_power_cell		= 48	[(display_name)="Detonated L2 Power Cell"	,(skip_zero)=true	];
 	int32 activated_exoskeleton		= 49	[(display_name)="Activated Exoskeleton"		,(skip_zero)=true	];
@@ -247,7 +248,7 @@ message Bonus {
 	int32 win_speed				= 72	[(display_name)="Win Speed"			,(skip_zero)=true	];
 	int32 challenge_win			= 73	[(display_name)="Challenge Win"			,(skip_zero)=true	];
 	int32 friendly_fire			= 74	[(display_name)="Friendly Fire"			,(skip_zero)=true	];
-	//next = 94
+	//next = 95
 }
 
 //------------------------------------------------------------------
@@ -339,7 +340,7 @@ message Cogmind {
 	message Temperature {
 		HeatLevelType	heat			= 1;
 		int32		value			= 2;
-		bool		thermoelectric_network	= 3;
+		bool		thermoelectric_network	= 3; // specifically an integrated one
 	}
 	message Movement {
 		MoveModeType	mode			= 1;
@@ -993,6 +994,7 @@ message Stats {
 			int32 superbehemoth       = 43  [ (display_name)="Superbehemoth"       ,(skip_zero)=true ];
 			int32 alpha_7             = 44  [ (display_name)="Alpha 7"             ,(skip_zero)=true ];
 			int32 fortress            = 45  [ (display_name)="Fortress"            ,(skip_zero)=true ];
+			int32 vseries             = 120 [ (display_name)="V-Series"            ,(skip_zero)=true ];
 			int32 protovariant_g      = 46  [ (display_name)="Protovariant G"      ,(skip_zero)=true ];
 			int32 protovariant_l      = 47  [ (display_name)="Protovariant L"      ,(skip_zero)=true ];
 			int32 protovariant_y      = 48  [ (display_name)="Protovariant Y"      ,(skip_zero)=true ];
@@ -1056,7 +1058,7 @@ message Stats {
 			int32 abomination         = 90  [ (display_name)="Abomination"         ,(skip_zero)=true ];
 			int32 anomaly             = 91  [ (display_name)="Anomaly"             ,(skip_zero)=true ];
 			int32 player              = 92  [ (display_name)="Player"              ,(skip_zero)=true ];
-			// next = 120
+			// next = 121
 		}
 
 		message BestKillStreak {
@@ -1988,6 +1990,7 @@ message Stats {
 
 		TotalAllies            total_allies             = 1  [ (display_name)="Total Allies"                           ];
 		ZioniteDispatches      zionite_dispatches       = 2  [ (display_name)="Zionite Dispatches"                     ];
+		int32                  warlord_eca_mod          = 11 [ (display_name)="Initial Warlord ECA Mod"                ];
 		WarlordSquadRendezvous warlord_squad_rendezvous = 10 [ (display_name)="Warlord Squad Rendezvous"               ];
 		TotalOrders            total_orders             = 3  [ (display_name)="Total Orders"                           ];
 		AllyAttacks            ally_attacks             = 4  [ (display_name)="Ally Attacks"                           ];
