@@ -1,5 +1,5 @@
 
-// Cogmind - Beta 15 (build 250408a)
+// Cogmind - Beta 15 (build 250423a)
 
 syntax = "proto3";
 
@@ -1083,10 +1083,30 @@ message Stats {
 
 	message Combat {
 		message HostileShotsFired {
-			int32 overall                 = 1                                                               ;
-			int32 missed                  = 2 [ (display_name)="Missed"                                    ];
-			int32 intercepted             = 3 [ (display_name)="Intercepted"             ,(skip_zero)=true ];
-			int32 deflected               = 4 [ (display_name)="Deflected"               ,(skip_zero)=true ];
+			message Hits {
+				int32 overall      = 1                                                  ;
+				int32 melee        = 2 [ (display_name)="Melee"      ,(skip_zero)=true ];
+				int32 projectile   = 3 [ (display_name)="Projectile" ,(skip_zero)=true ];
+				int32 aoe          = 4 [ (display_name)="AOE"        ,(skip_zero)=true ];
+			}
+			
+			message CriticalStrikes {
+				int32 overall          = 1                                                        ;
+				int32 actively_blocked = 2 [ (display_name)="Actively Blocked" ,(skip_zero)=true ];
+			}
+			
+			message PartDisruptions {
+				int32 overall          = 1                                                        ;
+				int32 actively_blocked = 2 [ (display_name)="Actively Blocked" ,(skip_zero)=true ];
+			}
+			
+			int32            overall           = 1                                                               ;
+			int32            missed            = 2 [ (display_name)="Missed"                                    ];
+			int32            intercepted       = 3 [ (display_name)="Intercepted"             ,(skip_zero)=true ];
+			int32            deflected         = 4 [ (display_name)="Deflected"               ,(skip_zero)=true ];
+			Hits             hits              = 5 [ (display_name)="Hits"                                      ];
+			CriticalStrikes  critical_strikes  = 6 [ (display_name)="Critical Strikes"        ,(skip_zero)=true ];
+			PartDisruptions  part_disruptions  = 7 [ (display_name)="Part Disruptions"        ,(skip_zero)=true ];
 		}
 		
 		message DamageTaken {
@@ -1395,6 +1415,7 @@ message Stats {
 		
 		message InfluenceDecreases {
 			int32 overall                  = 1                                                                 ;
+			int32 entered_new_map          = 8 [ (display_name)="Entered New Map"		,(skip_zero)=true ];
 			int32 time_decay               = 2 [ (display_name)="Time Decay"		,(skip_zero)=true ];
 			int32 search_patrol_dispatched = 3 [ (display_name)="Search Patrol Dispatched"	,(skip_zero)=true ];
 			int32 lost_part                = 4 [ (display_name)="Lost Part"			,(skip_zero)=true ];
@@ -1855,7 +1876,7 @@ message Stats {
 			int32 clear_recycling       = 34 [ (display_name)="clear_recycling"       ,(skip_zero)=true ];
 			int32 map_route             = 35 [ (display_name)="map_route"             ,(skip_zero)=true ];
 			int32 mark_security         = 36 [ (display_name)="mark_security"         ,(skip_zero)=true ];
-			int32 relay_feed            = 37 [ (display_name)="relay_feed"            ,(skip_zero)=true ];
+			int32 relay_feed            = 37 [ (display_name)="relay_feed"            ,(skip_zero)=true ]; // hack no longer accessible as of Beta 15
 			int32 disable_shields       = 38 [ (display_name)="disable_shields"       ,(skip_zero)=true ];
 			int32 redirect_shields      = 39 [ (display_name)="redirect_shields"      ,(skip_zero)=true ];
 			int32 find_scanalyzer       = 40 [ (display_name)="find_scanalyzer"       ,(skip_zero)=true ];
@@ -2007,6 +2028,7 @@ message Stats {
 			int32 optics		= 2  [ (display_name)="Optics"		];
 			int32 sensors		= 3  [ (display_name)="Sensors"		];
 			int32 ass		= 4  [ (display_name)="A.S.S."		];
+			int32 iff		= 18 [ (display_name)="IFF"		];
 			int32 terrain		= 5  [ (display_name)="Terrain"		];
 			int32 structural	= 6  [ (display_name)="Structural"	];
 			int32 traps		= 7  [ (display_name)="Traps"		];
@@ -2083,6 +2105,7 @@ message Stats {
 			int32 overloaded_moves    = 11 [ (display_name)="Overloaded Moves"                      ];
 			int32 propulsion_burnouts = 12 [ (display_name)="Propulsion Burnouts"                   ];
 			int32 robots_hopped       = 13 [ (display_name)="Robots Hopped"                         ];
+			int32 potential_cave_ins  = 19 [ (display_name)="Potential Cave-ins"                    ];
 			int32 cave_ins_triggered  = 14 [ (display_name)="Cave-ins Triggered"                    ];
 			int32 teleports           = 15 [ (display_name)="Teleports"           ,(skip_zero)=true ];
 			int32 spacefolds          = 17 [ (display_name)="Spacefolds"          ,(skip_zero)=true ];
